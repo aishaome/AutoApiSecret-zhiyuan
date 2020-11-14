@@ -52,11 +52,11 @@ jobs:
     - name: Delete secrets config #删除机密
       run: | 
         rm -f 2.py
-        #rm -f 3.py
+        rm -f 3.py
         rm -f configid.txt
-        #rm -f configid_2.txt
+        rm -f configid_2.txt
         rm -f configkey.txt
-        #rm -f configkey_2.txt    
+        rm -f configkey_2.txt    
     - name: Commit #上传新的refresh_token到仓库
       run: |
         git config --global user.email AutoupdateRobot@email.com
