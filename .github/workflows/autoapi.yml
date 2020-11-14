@@ -31,8 +31,8 @@ jobs:
     - name: Read config from secrets  #读取机密
       env: 
         CONFIG_ID: ${{ secrets.CONFIG_ID }} # secrets_id 提供
-        #CONFIG_KEY: ${{ secrets.CONFIG_KEY }} # secrets_key 提供
-        CONFIG_ID_2: ${{ secrets.CONFIG_ID_2 }} # secrets_id 提供
+        CONFIG_KEY: ${{ secrets.CONFIG_KEY }} # secrets_key 提供
+        #CONFIG_ID_2: ${{ secrets.CONFIG_ID_2 }} # secrets_id 提供
         #CONFIG_KEY_2: ${{ secrets.CONFIG_KEY_2 }} # secrets_key 提供
       run: | 
         cp 1.py 2.py
