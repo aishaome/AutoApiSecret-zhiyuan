@@ -32,21 +32,31 @@ jobs:
       env: 
         CONFIG_ID: ${{ secrets.CONFIG_ID }} # secrets_id 提供
         CONFIG_KEY: ${{ secrets.CONFIG_KEY }} # secrets_key 提供
+        CONFIG_ID_2: ${{ secrets.CONFIG_ID_2 }} # secrets_id 提供
+        CONFIG_KEY_2: ${{ secrets.CONFIG_KEY_2 }} # secrets_key 提供
       run: | 
         cp 1.py 2.py
+        cp 0.py 3.py
         echo $CONFIG_ID > configid.txt
+        echo $CONFIG_ID_2 > configid_2.txt
         echo $CONFIG_KEY > configkey.txt
+        echo $CONFIG_KEY_2 > configkey_2.txt
         sed -i '10 r configid.txt' 2.py
+        sed -i '10 r configid_2.txt' 3.py
         sed -i '12 r configkey.txt' 2.py
+        sed -i '12 r configkey_2.txt' 3.py
     - name: Test Api #Api调用
       run: | 
         echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
-        python 2.py
+        python 2.py && python 3.py
     - name: Delete secrets config #删除机密
       run: | 
         rm -f 2.py
+        rm -f 3.py
         rm -f configid.txt
-        rm -f configkey.txt    
+        rm -f configid_2.txt
+        rm -f configkey.txt
+        rm -f configkey_3.txt    
     - name: Commit #上传新的refresh_token到仓库
       run: |
         git config --global user.email AutoupdateRobot@email.com
